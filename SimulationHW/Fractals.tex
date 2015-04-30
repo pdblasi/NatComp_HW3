@@ -11,7 +11,22 @@ Implement a bracketed OL-system and reproduce all plant-like structures of Figur
 
 The first step to solving this problem was to gather the necessary test input. The parameters from Figure~7.24 in the text were summarized into Figure~\ref{7.24_rep}. The images were created using the program developed for the problem.
 
-\begin{figure} \label{7.24_rep}
+After collecting the necessary data, I saw two distinct parts to this problem. One was to create the L-system strings, and the other was to interpret them using Python's Turtle graphics (as suggested).
+
+\subsection{L-system generation}
+L-systems are rather straight forward so I made a simple class to encapsulate them. I tested this class against the example in section 7.4.3 in the text. The results can be found in Figure~\ref{lsystem_results}.
+
+\begin{figure}
+\centering
+\includegraphics[scale=.75]{LSystemResults}
+\caption{LSystem Results}
+\label{lsystem_results}
+\end{figure}
+
+
+\subsection{Turtle Graphics representation}
+
+\begin{figure}
 \centering
 \begingroup \everymath{\scriptstyle}
 \begin{tabular}{ | c | c | c | }
@@ -59,6 +74,7 @@ $\begin{aligned}
 \end{tabular}
 \endgroup
 \caption{Reproduction of figure 7.24 in the text}
+\label{7.24_rep}
 \end{figure}
 
 \section{Problem 15}
@@ -70,7 +86,7 @@ Implement a recursive iterated function system (RIFS) to generate all the fracta
 
 Again, the first step was to reproduce the data needed for the problem. Table~7.3 from the text has been reproduced in Table~\ref{7.3_rep}
 
-\begin{table} \label{7.3_rep}
+\begin{table}
 \begin{tabular}{ c c }
 	\begin{tabular}{ c c c c c c c c }
 	\hline
@@ -122,6 +138,7 @@ Again, the first step was to reproduce the data needed for the problem. Table~7.
 	\end{tabular}
 \end{tabular}
 \caption{Reproduction of Table 7.3 from the text}
+\label{7.3_rep}
 \end{table}
 
 \section{Problem 21}
