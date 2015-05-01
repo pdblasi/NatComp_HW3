@@ -12,46 +12,22 @@ class RMD_3D:
         self.d = d
         self.used = []
 
-    def __stack(self, map):
-        stack = []
-        stack.append((0, 0)), stack.append((self.height-1, self.width-1)), stack.append(self.d)
-        
-        while len(stack) != 0:
-            right = stack.pop(0)
-            left = stack.pop(0)
-            d = stack.pop(0)
-            mid = ((left[0] + right[0]) // 2,
-                   (left[1] + right[1]) // 2 )
-        
-            map[left[0]][mid[1]] = (map[left[0]][left[1]] + map[left[0]][right[1]]) / 2
-            map[mid[0]][right[1]] = (map[left[0]][right[1]] + map[right[0]][right[1]]) / 2
-            map[right[0]][mid[1]] = (map[right[0]][right[1]] + map[right[0]][left[1]]) / 2
-            map[mid[0]][left[1]] = (map[right[0]][left[1]] + map[left[0]][left[1]]) / 2
-            map[mid[0]][mid[1]] = max(((( map[left[0]][left[1]] + map[left[0]][right[1]] +
-                                          map[right[0]][right[1]] + map[right[0]][left[1]]) / 4 +
-                                          rand.uniform(-1*d, d)), 0))
-        
-            if right[0] - mid[0] != 1:
-                d = d / 2**self.H
-                stack.append(left), stack.append(mid), stack.append(d)
-                stack.append((left[0], mid[1])), stack.append((mid[0], right[1])), stack.append(d)
-                stack.append(mid), stack.append(right), stack.append(d)
-                stack.append((mid[0], left[1])), stack.append((right[0], mid[1])), stack.append(d)
-
     def create_map(self):
         self.map = np.zeros((self.height, self.width))
         self.__recurse((0, 0), (self.height, self.width), 0, self.d)
-        #self.__stack(self.map)
-
         self.__plot(self.map)
 
     def __plot(self, map):
-        print map
+        zeros = np.where(self.map==0)
+        zeros = zip(zeros[0], zeros[1])
+        print zeros
+        print "All in used?", all(x in self.used for x in zeros)
+        print "Any in used?", any(x in self.used for x in zeros)
         ax = plt.figure().add_subplot(111, projection='3d')
         x, y = np.meshgrid(range(self.width), range(self.height))
-        ax.contourf(x, y, map, cmap=cm.terrain, vmin=1, vmax=100)
+        ax.plot_wireframe(x, y, map, cmap=cm.terrain)
         plt.axis('equal')
-        plt.axis('off')
+        #plt.axis('off')
         plt.show()        
 
     def __recurse(self, min_corner, max_corner, depth, d):
@@ -65,6 +41,9 @@ class RMD_3D:
                 (max_x, max_y) ]
         center = self.__center(op[0], op[3])
         if depth <= self.iters and not center in self.used:
+            print len(self.used) + 1
+            print "D:", depth
+            print "C:", center, "OP:", op, "\n"
             self.used.append(center)
             self.map[center[0]][center[1]] = self.__average(op)
             self.__perturb(center)
@@ -98,4 +77,4 @@ class RMD_3D:
 
 
 if __name__ == '__main__':
-    RMD_3D(8, .9, 30).create_map()
+    RMD_3D(3, .5, 30).create_map()
