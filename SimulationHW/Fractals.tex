@@ -18,7 +18,7 @@ L-systems are rather straight forward so I made a simple class to encapsulate th
 
 \begin{figure}
 \centering
-\includegraphics[scale=.75]{LSystemResults}
+\includegraphics[scale=.75]{LSystem/LSystemResults}
 \caption{LSystem Results}
 \label{lsystem_results}
 \end{figure}
@@ -27,7 +27,7 @@ L-systems are rather straight forward so I made a simple class to encapsulate th
 \subsection{Turtle Graphics representation}
 Generating the actual Python turtle code was also simple. I encapsulated the process in a class called LSystemTurtle that would initialize, run, and save the results from each L-system. This code can be found in Listing~\ref{LSystemTurtle.py}. The default function run if this python file is run generated the six example images seen in Figure~\ref{7.24_rep}. It's worth noting that even with the turtle speed set to 0 (meaning no animation), these plants took a very long time to reproduce\footnote{Like, "I could have grown a real tree faster than this" very long time}.
 
-After generating the given examples the task was to mess with the parameters to create a portfolio of ten different plants. Below I'll list my thought processes for each of the plants in the portfolio found in Appendix~\ref{plant_portfolio}. For the last two, I had to modify my code slightly. The modification amounted to checking if the d and delta variables were functions and if they were calling them instead of using them as normal. You can see this around lines 24, 40, and 45 in the code. The code to actually create the portfolio can be seen in Listing~\ref{PlantPortfolio.py}.
+After generating the given examples the task was to mess with the parameters to create a portfolio of ten different plants. Below I'll list my thought processes for each of the plants in the portfolio found in Appendix~\ref{plant_portfolio}. For the last two, I had to modify my code slightly. The modification amounted to checking if the d and delta variables were functions and if they were calling them instead of using them as normal. You can see this around lines 30, 47, and 52 in the code. The code to actually create the portfolio can be seen in Listing~\ref{PlantPortfolio.py}.
 
 \subsubsection{Symmetrical G}
 For this plant, I decided to keep the $F \rightarrow FF$ parameter and just adapt the $G$ parameter. I like symmetry so my thought was to make a string that is a palindrome and use that as the replacement in G. The full set of parameters I decided to go with was:
@@ -41,6 +41,8 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
+This L-system generated a nest like structure with a few larger voids in it. It makes sense that a symmetrical pattern would create a somewhat circular result.
+
 \subsubsection{Symmetrical G with +/- swapping}
 For this plant, I kept the same parameters as the previous one, but instead of being a true palindrome, I swapped the + and - signs on the second half of the G parameter. This gave me:
 
@@ -53,6 +55,8 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
+This L-system, unsurprisingly in hindsight, created a very tall plant that doesn't have almost any width to it. It ends up going off of the canvas regardless of the step size taken.
+
 \subsubsection{Symmetrical F only}
 In this parameter set, I removed the G parameter and went with only one parameter to choose from. Again, I wanted to experiment with symmetry so I went with a palindrome.
 
@@ -64,6 +68,8 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
+Similarly to the symmetrical G pattern, this created a highly circular pattern. Because it was created from one rule it's far more regular than the symmetrical G pattern. It looks nearly like a buzz saw.
+
 \subsubsection{Symmetrical F only with +/- swapping}
 This time I used the same single parameter set as the previous plant but swapped the + and - signs in the second half of the palindrome.
 
@@ -74,6 +80,8 @@ $\begin{aligned}
 & F \rightarrow FF+[-F[--F][F++]F+]-FF
 \end{aligned}$
 \end{center}
+
+This turned out very similar to the symmetrical G with sign swapping. In the same way as the previous, it was more regular.
 
 \subsubsection{Turning F}
 For this plant I wanted to make a very asymmetrical plant. My plan for this was to have the F parameter constantly turn in one direction. This plant is directly modified from the plant in Figure~\ref{7.24_rep}(c).
@@ -87,6 +95,8 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
+This was a surprising plant to me. The Fs far overpowered the Gs and more or less made a circular scribble.
+
 \subsubsection{Symmetrical Turning F}
 This time I wanted to try having a palindrome with turns for the F value. This one is again adapted from Figure~\ref{7.24_rep}(c).
 
@@ -98,6 +108,8 @@ $\begin{aligned}
 & F \rightarrow FF-F-FF
 \end{aligned}$
 \end{center}
+
+This was very similar to the previous, but with two turns it's a much more dense scribble.
 
 \subsubsection{Symmetrical Turning F with +/- swapping}
 This one is adapted from the above plant with the second - sign being replaced with a +. The hope was that this would produce a "wavy" plant.
@@ -111,6 +123,8 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
+This one turned out somewhat interesting. I don't think it looks like a plant, but it does look like it could be used to simulate river paths. The wavy effect did come through rather nicely and looks somewhat random.
+
 \subsubsection{Similar G \& F}
 For this plant, I wanted to see what happens when F and G are similar, but with the Fs and Gs in them swapped.
 
@@ -123,6 +137,8 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
+Similarity seems to have an effect reminiscent of symmetry on L-systems. This plant came out looking like a nest, similarly to many of the symmetrical patterns.
+
 \subsubsection{Randomized distance}
 In an attempt to get a random plant, I decided to make the distance stepped at each point be determined randomly. The other parameters where taken from Figure~\ref{7.24_rep}(b).
 
@@ -133,6 +149,8 @@ $\begin{aligned}
 & F \rightarrow FF+[+F-F-F]-[-F+F+F]
 \end{aligned}$
 \end{center}
+
+These last two turned out to be the more interesting ones. They ended up very similar to Figure~7.24(b) from which they were adapted. In the case of randomized distance, the entire fractal seemed to expand ever so slightly.
 
 \subsubsection{Randomized turn ($\delta$)}
 In another attempt to get a random plant, I decided to make the angle turned at each point be determined randomly. The other parameters where taken from Figure~\ref{7.24_rep}(b).
@@ -145,14 +163,16 @@ $\begin{aligned}
 \end{aligned}$
 \end{center}
 
+Again, this was similar to Figure~7.24(b) but in this case, the plant only seemed to widen, not to expand vertically.
+
 \begin{figure}
 \centering
 \begingroup \everymath{\scriptsize} \setlength{\medmuskip}{0mu}
 \begin{tabular}{ | c | c | c | }
 \hline
-%\includegraphics[width=.3\linewidth]{LSystemExamples/lsystem_a} &
-%\includegraphics[width=.3\linewidth]{LSystemExamples/lsystem_b} &
-%\includegraphics[width=.3\linewidth]{LSystemExamples/lsystem_c} \\
+\includegraphics[width=.3\linewidth]{LSystem/lsystem_a} &
+\includegraphics[width=.3\linewidth]{LSystem/lsystem_b} &
+\includegraphics[width=.3\linewidth]{LSystem/lsystem_c} \\
 
 $\begin{aligned}
 & t = 8, \delta = 22.5\degree \\
@@ -172,9 +192,9 @@ $\begin{aligned}
 & F \rightarrow FF
 \end{aligned}$ \\ \hline
 
-%\includegraphics[width=.3\linewidth]{LSystemExamples/lsystem_d} &
-%\includegraphics[width=.3\linewidth]{LSystemExamples/lsystem_e} &
-%\includegraphics[width=.3\linewidth]{LSystemExamples/lsystem_f} \\
+\includegraphics[width=.3\linewidth]{LSystem/lsystem_d} &
+\includegraphics[width=.3\linewidth]{LSystem/lsystem_e} &
+\includegraphics[width=.3\linewidth]{LSystem/lsystem_f} \\
 
 $\begin{aligned}
 & t = 9, \delta = 20\degree \\
@@ -209,7 +229,7 @@ Implement a random iterated function system (RIFS) to generate all the fractals 
 
 Again, the first step was to reproduce the data needed for the problem. Table~7.3 from the text has been reproduced in Table~\ref{7.3_rep}.
 
-With this data available I created a simple class to do the iterated functions, which would output a list of x and y values that I would plot after the full set was created. This is a slight (less graphics intensive) modification of Algorithm~7.3 in the text. This code can be seen in Listing~\ref{RIFS.py}. The resulting fractals can be seen in Appendix~\ref{RIFS_results}.
+With this data available I created a simple class to do the iterated functions, which would output a list of x and y values that I would plot after the full set was created. This is a slight (less graphics intensive) modification of Algorithm~7.3 in the text. This code can be seen in Listing~\ref{RIFS.py}. The resulting fractals can be seen in Appendix~\ref{RIFS_results}. The fractals produced do not contain different shades of grey depending on the chosen transform.
 
 \begin{table}
 \begin{tabular}{ c c }

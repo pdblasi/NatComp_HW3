@@ -18,6 +18,12 @@ class LSystemTurtle:
         self.turtle.ht()
         self.turtle.pd()
 
+    def set_center(self,x,y):
+        self.turtle.pu()
+        self.turtle.setx(x)
+        self.turtle.sety(y)
+        self.turtle.pd()
+
     def run(self, iters, omega):
         word = self.lsystem.generate_word(iters, omega)
         for c in word:
@@ -76,11 +82,11 @@ if __name__== '__main__':
     #lturtle = LSystemTurtle(system, .5, 22.5)
     #lturtle.run(9, 'G')
     #lturtle.save('lsystem_d.eps')
-
-    #system = LSystem({'G':'F[-G][+G]FG', 'F':'FF'})
-    #lturtle = LSystemTurtle(system, 1, 22.5)
-    #lturtle.run(9, 'G')
-    #lturtle.save('lsystem_e.eps')
+    
+    system = LSystem({'G':'F[-G][+G]FG', 'F':'FF'})
+    lturtle = LSystemTurtle(system, .5, 22.5)
+    lturtle.run(9, 'G')
+    lturtle.save('lsystem_e.eps')
 
     system = LSystem({'G':'FG[-F[G]-G][G+G][+F[G]+G]', 'F':'FF'})
     lturtle = LSystemTurtle(system, 3, 22.5)
