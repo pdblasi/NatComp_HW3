@@ -292,3 +292,27 @@ Implement the random midpoint displacement algorithm in 3D and generate some fra
 }
 
 \hfill \\
+
+This problem was straight-forward, but had a lot of small nuances that made a big impact. The code for this can be seen in Listing~\ref{3D_RMD.py} and the results are summarized in Figure~\ref{RMD_results}
+
+In my first attempt, my recursion was depth limited, and this led to a strange pattern where the largest odd number when paired with an even number, in both the x \& y direction, were skipped. This was causing a very strange landscape with large holes in these areas.
+
+After deciding that limiting by whether the center point had been used or not was the better limiting factor, I ran into an issue displaying the values well. To fix this, I normalized the height values between one and zero and showed the wireframe that way.
+
+The final issue is that the specific colormap used makes much of the landscape look like water, but I decided to leave it and concentrate on other problems.
+
+Comparing the maps generated with the three H values over multiple runs, it's clear that the higher H value lines up with less seperated islands and less quick changes in height.
+
+\begin{figure}
+\begin{tabular}{ c c }
+\fbox{\includegraphics[width=.45\textwidth]{RMD/rmd_H1}} &
+\fbox{\includegraphics[width=.45\textwidth]{RMD/rmd_H5}} \\
+
+(a) & (b) \\ \\
+
+\multicolumn{2}{c}{\fbox{\includegraphics[width=.45\textwidth]{RMD/rmd_H9}}} \\
+\multicolumn{2}{c}{(c)}
+\end{tabular}
+\caption{RMD maps generated with (a) $H=0.1$, (b) $H=0.5$, (c) $H=0.9$}
+\label{RMD_results}
+\end{figure}

@@ -63,25 +63,25 @@ class LSystemTurtle:
 
 
 if __name__== '__main__':
-    #system = LSystem({'G':'F+[[G]-G]-F[-FG]+G', 'F':'FF'})
-    #lturtle = LSystemTurtle(system, 1, 22.5)
-    #lturtle.run(8, 'G')
-    #lturtle.save('lsystem_a.eps')
+    system = LSystem({'G':'F+[[G]-G]-F[-FG]+G', 'F':'FF'})
+    lturtle = LSystemTurtle(system, 1, 22.5)
+    lturtle.run(8, 'G')
+    lturtle.save('lsystem_a.eps')
 
-    #system = LSystem({'F':'FF+[+F-F-F]-[-F+F+F]'})
-    #lturtle = LSystemTurtle(system, 5, 22.5)
-    #lturtle.run(4, 'F')
-    #lturtle.save('lsystem_b.eps')
+    system = LSystem({'F':'FF+[+F-F-F]-[-F+F+F]'})
+    lturtle = LSystemTurtle(system, 5, 22.5)
+    lturtle.run(4, 'F')
+    lturtle.save('lsystem_b.eps')
 
-    #system = LSystem({'G':'F[+FFG][G]-FG', 'F':'FF'})
-    #lturtle = LSystemTurtle(system, 3, 22.5)
-    #lturtle.run(6, 'G')
-    #lturtle.save('lsystem_c.eps')
+    system = LSystem({'G':'F[+FFG][G]-FG', 'F':'FF'})
+    lturtle = LSystemTurtle(system, 3, 22.5)
+    lturtle.run(6, 'G')
+    lturtle.save('lsystem_c.eps')
 
-    #system = LSystem({'G':'F[-G]F[+G]-G', 'F':'FF'})
-    #lturtle = LSystemTurtle(system, .5, 22.5)
-    #lturtle.run(9, 'G')
-    #lturtle.save('lsystem_d.eps')
+    system = LSystem({'G':'F[-G]F[+G]-G', 'F':'FF'})
+    lturtle = LSystemTurtle(system, .5, 22.5)
+    lturtle.run(9, 'G')
+    lturtle.save('lsystem_d.eps')
     
     system = LSystem({'G':'F[-G][+G]FG', 'F':'FF'})
     lturtle = LSystemTurtle(system, .5, 22.5)
